@@ -14,7 +14,7 @@ object Track
 		this translate_results data
 	}
 	
-	def translate_race(stringXML : String) =
+	private def translate_race(stringXML : String) =
 	{
 		val nodes = this translate_string stringXML
 		val place = (nodes \\ "RaceName").text
@@ -24,20 +24,20 @@ object Track
 		List(place, date + " @ " + time)
 	}	
 	
-	def translate_results(stringXML : String) =
+	private def translate_results(stringXML : String) =
 	{
 		val nodes = this translate_string stringXML
 		
 		List("Results")
 	}
 	
-	def ask_for(params : String) = 
+	private def ask_for(params : String) = 
 	{
 		val url = "http://ergast.com/api/f1/" + params + ".xml"
 		io.Source.fromURL(url).mkString
 	}
 	
-	def translate_string(string : String) =
+	private def translate_string(string : String) =
 	{
 		XML loadString string
 	}
