@@ -1,2 +1,2 @@
 cd build
-scala Zoom
+scala Zoom $1
