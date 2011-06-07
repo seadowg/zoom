@@ -1,4 +1,5 @@
 import scala.xml._
+import scala.collection.mutable.ListBuffer
 
 object Track
 {	
@@ -26,9 +27,22 @@ object Track
 	
 	private def translate_results(stringXML : String) =
 	{
-		val nodes = this translate_string stringXML
+		def mk_result(string : String, i : Int) =
+		{
+			i.toString() + ". " + string
+		}
 		
-		List("Results")
+		val nodes = this translate_string stringXML
+		val list = new ListBuffer[String]()
+		
+		list append (nodes \\ "RaceName").text
+		list append ""
+		
+		var i = 1
+		(nodes \\ "FamilyName") foreach { 
+			node => list append mk_result(node.text, i); i += 1 }
+		
+		list toList
 	}
 	
 	private def ask_for(params : String) = 
