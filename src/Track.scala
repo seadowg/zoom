@@ -22,7 +22,7 @@ object Track
 		val date = (nodes \\ "Date").text
 		val time = (nodes \\ "Time").text
 		
-		List(place, date + " @ " + time)
+		List("", place, date + " @ " + time, "")
 	}	
 	
 	private def translate_results(stringXML : String) =
@@ -35,12 +35,14 @@ object Track
 		val nodes = this translate_string stringXML
 		val list = new ListBuffer[String]()
 		
+		list append ""
 		list append (nodes \\ "RaceName").text
 		list append ""
 		
 		var i = 1
 		(nodes \\ "FamilyName") foreach { 
 			node => list append mk_result(node.text, i); i += 1 }
+		list append ""
 		
 		list toList
 	}
