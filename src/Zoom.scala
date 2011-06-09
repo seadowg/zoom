@@ -6,8 +6,9 @@ object Zoom
 		
 	 	args(0) match 
 		{
-			case "next-race" => data = Track ask_for_race
+			case "next" => data = Track ask_for_race
 			case "results" => data = Track ask_for_results
+			//case "standings" => data = Track ask_for_standings
 		} 
 		
 		Screen display data
