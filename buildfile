@@ -13,9 +13,9 @@ repositories.remote << "http://www.ibiblio.org/maven2/"
 
 desc "Command line Formula One information"
 define "zoom" do
-
   project.version = VERSION_NUMBER
   project.group = GROUP
   manifest["Implementation-Vendor"] = COPYRIGHT
-  package(:jar)
+  
+  package :jar
 end
